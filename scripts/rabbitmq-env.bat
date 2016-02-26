@@ -41,9 +41,17 @@ REM     echo -n "WARNING: ignoring /etc/rabbitmq/rabbitmq.conf -- "
 REM     echo "location has moved to ${CONF_ENV_FILE}"
 REM fi
 
-REM ERL_ARGS aren't referenced in the batch scripts
 REM Common defaults
-REM set SERVER_ERL_ARGS=+P 1048576
+set SERVER_ERL_ARGS="+P 1048576"
+
+if not defined RABBITMQ_ERL_SCHEDULER_BINDING (
+  set RABBITMQ_ERL_SCHEDULER_BINDING="+stbt ts"
+)
+
+set SERVER_ADDITIONAL_ERL_ARGS=!RABBITMQ_ERL_SCHEDULER_BINDING!
+
+set RABBITMQ_SERVER_ERL_ARGS=!SERVER_ERL_ARGS!
+set RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=!SERVER_ERL_ARGS!
 
 REM ## Get configuration variables from the configure environment file
 REM [ -f ${CONF_ENV_FILE} ] && . ${CONF_ENV_FILE} || true

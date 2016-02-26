@@ -45,6 +45,11 @@ if [ -z "$RABBITMQ_SCRIPTS_DIR" ]; then
     RABBITMQ_SCRIPTS_DIR=`dirname $SCRIPT_PATH`
 fi
 
+#sets the default scheduler binding to ts (thread_spread).
+if [ -z "$RABBITMQ_ERL_SCHEDULER_BINDING" ]; then
+  RABBITMQ_SCHEDULER_BINDING="+stbt ts"
+fi
+
 rmq_realpath() {
     local path=$1
 
@@ -64,6 +69,8 @@ RABBITMQ_HOME="$(rmq_realpath "${RABBITMQ_SCRIPTS_DIR}/..")"
 
 ## Common defaults
 SERVER_ERL_ARGS="+P 1048576"
+
+SERVER_ADDITIONAL_ERL_ARGS=${RABBITMQ_ERL_SCHEDULER_BINDING}
 
 # warn about old rabbitmq.conf file, if no new one
 if [ -f /etc/rabbitmq/rabbitmq.conf ] && \
