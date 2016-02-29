@@ -47,7 +47,7 @@ fi
 
 #sets the default scheduler binding to ts (thread_spread).
 if [ -z "$RABBITMQ_ERL_SCHEDULER_BINDING" ]; then
-  RABBITMQ_ERL_SCHEDULER_BINDING="+stbt db"
+  RABBITMQ_ERL_SCHEDULER_BINDING="+stbt ts"
 fi
 
 rmq_realpath() {
