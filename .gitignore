@@ -4,6 +4,7 @@
 *.beam
 .erlang.mk/
 cover/
+debug/
 deps/
 doc/
 ebin/
