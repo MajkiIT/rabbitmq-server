@@ -11,6 +11,8 @@ etc/
 logs/
 plugins/
 
+PACKAGES/
+
 rabbit.d
 
 # Generated sources files.
